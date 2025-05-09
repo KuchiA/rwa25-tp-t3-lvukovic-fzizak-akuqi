@@ -16,7 +16,7 @@ namespace VrticApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmAttendance());
+            Application.Run(new FrmLogin());
         }
     }
 }
