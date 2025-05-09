@@ -73,6 +73,7 @@
             this.txtBoxPassword.Name = "txtBoxPassword";
             this.txtBoxPassword.Size = new System.Drawing.Size(177, 20);
             this.txtBoxPassword.TabIndex = 20;
+            this.txtBoxPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
