@@ -64,7 +64,6 @@
     <Compile Include="planerAktivnosti.Designer.cs">
       <DependentUpon>planerAktivnosti.cs</DependentUpon>
     </Compile>
-    <Compile Include="planerAktivnostiBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="FrmLogin.resx">
@@ -82,9 +81,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="sudjelovanjeDjece.resx">
-      <DependentUpon>sudjelovanjeDjece.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
