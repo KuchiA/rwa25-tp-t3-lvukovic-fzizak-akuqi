@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace VrticApp
 {
-    public partial class FrmAttendance : Form
+    public partial class FrmTracking : Form
     {
-        public FrmAttendance()
+        public FrmTracking()
         {
             InitializeComponent();
         }
