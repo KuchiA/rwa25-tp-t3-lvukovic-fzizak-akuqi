@@ -28,7 +28,7 @@ namespace VrticApp
             if (txtBoxUsername.Text == "admin" && txtBoxPassword.Text == "password")
             {
                 MessageBox.Show("Uspješno ste se prijavili!", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                FrmAttendance frmAttendance = new FrmAttendance();
+                FrmTracking frmAttendance = new FrmTracking();
                 this.Hide();
                 frmAttendance.ShowDialog();
                 Close();

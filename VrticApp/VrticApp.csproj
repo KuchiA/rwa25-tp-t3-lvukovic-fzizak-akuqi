@@ -53,11 +53,11 @@
     <Compile Include="Evidencija.Designer.cs">
       <DependentUpon>Evidencija.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmAttendance.cs">
+    <Compile Include="FrmTracking.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmAttendance.Designer.cs">
-      <DependentUpon>FrmAttendance.cs</DependentUpon>
+    <Compile Include="FrmTracking.Designer.cs">
+      <DependentUpon>FrmTracking.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -99,6 +99,9 @@
     </Compile>
     <EmbeddedResource Include="Evidencija.resx">
       <DependentUpon>Evidencija.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTracking.resx">
+      <DependentUpon>FrmTracking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
