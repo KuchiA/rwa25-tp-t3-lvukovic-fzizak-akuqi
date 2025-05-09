@@ -71,6 +71,12 @@
     <Compile Include="FrmStatistics.Designer.cs">
       <DependentUpon>FrmStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Klase\Aktivnosti.cs" />
+    <Compile Include="Klase\Djeca.cs" />
+    <Compile Include="Klase\Grupa.cs" />
+    <Compile Include="Klase\Odgajateljica.cs" />
+    <Compile Include="Klase\Osoba.cs" />
+    <Compile Include="Klase\Ravnatelj.cs" />
     <Compile Include="planerAktivnosti.cs">
       <SubType>Form</SubType>
     </Compile>
