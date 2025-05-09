@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace VrticApp
 {
-    public partial class Form1 : Form
+    public partial class FrmAttendance : Form
     {
-        public Form1()
+        public FrmAttendance()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
