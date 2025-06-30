@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace RWA
 {
-    partial class Form1
+    partial class sudjelovanjeDjece
     {
         /// <summary>
         ///  Required designer variable.
