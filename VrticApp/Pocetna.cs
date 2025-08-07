@@ -9,14 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using VrticApp.Models;
 
 namespace VrticApp
 {
-    public partial class Početna : Form
+    public partial class Pocetna : Form
     {
-        public Početna()
+        private readonly Korisnik _trenutniKorisnik;
+        public Pocetna(Korisnik korisnik)
         {
             InitializeComponent();
+            _trenutniKorisnik = korisnik;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -24,9 +27,9 @@ namespace VrticApp
 
         }
 
-        private void Početna_Load(object sender, EventArgs e)
+        private void Pocetna_Load(object sender, EventArgs e)
         {
-
+            lblUloga.Text = $"Prijavljeni ste kao: {_trenutniKorisnik.Uloga}";
         }
 
         private void label1_Click_1(object sender, EventArgs e)
@@ -74,6 +77,11 @@ namespace VrticApp
             var sudjelovanjeDjece = new sudjelovanjeDjece();
             Hide();
             sudjelovanjeDjece.ShowDialog();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

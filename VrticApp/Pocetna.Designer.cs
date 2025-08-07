@@ -1,6 +1,6 @@
 ﻿namespace VrticApp
 {
-    partial class Početna
+    partial class Pocetna
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             this.upravljanjeGrupa = new System.Windows.Forms.Button();
             this.analiza = new System.Windows.Forms.Button();
             this.sudjelovanje = new System.Windows.Forms.Button();
+            this.lblUloga = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             this.tableLayoutPanel1.Controls.Add(this.upravljanjeGrupa, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.analiza, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.sudjelovanje, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblUloga, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -168,17 +170,26 @@
             this.sudjelovanje.UseVisualStyleBackColor = true;
             this.sudjelovanje.Click += new System.EventHandler(this.sudjelovanje_Click);
             // 
-            // Početna
+            // lblUloga
+            // 
+            this.lblUloga.AutoSize = true;
+            this.lblUloga.Location = new System.Drawing.Point(3, 0);
+            this.lblUloga.Name = "lblUloga";
+            this.lblUloga.Size = new System.Drawing.Size(0, 13);
+            this.lblUloga.TabIndex = 9;
+            this.lblUloga.Click += new System.EventHandler(this.label2_Click);
+            // 
+            // Pocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1210, 636);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MinimumSize = new System.Drawing.Size(400, 270);
-            this.Name = "Početna";
+            this.Name = "Pocetna";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Početna";
-            this.Load += new System.EventHandler(this.Početna_Load);
+            this.Load += new System.EventHandler(this.Pocetna_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -195,5 +206,6 @@
         private System.Windows.Forms.Button upravljanjeGrupa;
         private System.Windows.Forms.Button analiza;
         private System.Windows.Forms.Button sudjelovanje;
+        private System.Windows.Forms.Label lblUloga;
     }
 }

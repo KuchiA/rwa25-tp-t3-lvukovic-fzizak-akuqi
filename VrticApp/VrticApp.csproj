@@ -81,17 +81,20 @@
     <Compile Include="Klase\Odgajateljica.cs" />
     <Compile Include="Klase\Osoba.cs" />
     <Compile Include="Klase\Ravnatelj.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Services\KorisnikService.cs" />
+    <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="planerAktivnosti.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="planerAktivnosti.Designer.cs">
       <DependentUpon>planerAktivnosti.cs</DependentUpon>
     </Compile>
-    <Compile Include="Početna.cs">
+    <Compile Include="Pocetna.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Početna.Designer.cs">
-      <DependentUpon>Početna.cs</DependentUpon>
+    <Compile Include="Pocetna.Designer.cs">
+      <DependentUpon>Pocetna.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -128,8 +131,8 @@
     <EmbeddedResource Include="planerAktivnosti.resx">
       <DependentUpon>planerAktivnosti.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Početna.resx">
-      <DependentUpon>Početna.cs</DependentUpon>
+    <EmbeddedResource Include="Pocetna.resx">
+      <DependentUpon>Pocetna.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
