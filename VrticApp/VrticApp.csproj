@@ -38,6 +38,7 @@
       <HintPath>..\..\..\Downloads\DBLayer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
@@ -57,11 +58,11 @@
     <Compile Include="Evidencija.Designer.cs">
       <DependentUpon>Evidencija.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmTracking.cs">
+    <Compile Include="FrmAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmTracking.Designer.cs">
-      <DependentUpon>FrmTracking.cs</DependentUpon>
+    <Compile Include="FrmAttendance.Designer.cs">
+      <DependentUpon>FrmAttendance.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
@@ -81,7 +82,10 @@
     <Compile Include="Klase\Odgajateljica.cs" />
     <Compile Include="Klase\Osoba.cs" />
     <Compile Include="Klase\Ravnatelj.cs" />
+    <Compile Include="Models\Dolazak.cs" />
+    <Compile Include="Models\Grupa.cs" />
     <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Services\DolazakService.cs" />
     <Compile Include="Services\KorisnikService.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
     <Compile Include="planerAktivnosti.cs">
@@ -119,8 +123,8 @@
     <EmbeddedResource Include="Evidencija.resx">
       <DependentUpon>Evidencija.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmTracking.resx">
-      <DependentUpon>FrmTracking.cs</DependentUpon>
+    <EmbeddedResource Include="FrmAttendance.resx">
+      <DependentUpon>FrmAttendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>

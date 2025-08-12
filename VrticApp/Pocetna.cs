@@ -46,7 +46,7 @@ namespace VrticApp
 
         private void dolasci_Click(object sender, EventArgs e)
         {
-            var FrmTracking = new FrmTracking();
+            var FrmTracking = new FrmAttendance();
             Hide();
             FrmTracking.ShowDialog();
         }

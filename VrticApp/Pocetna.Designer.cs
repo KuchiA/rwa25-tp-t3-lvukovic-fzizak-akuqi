@@ -112,14 +112,16 @@
             // 
             // dolasci
             // 
+            this.dolasci.BackColor = System.Drawing.SystemColors.ControlLight;
             this.dolasci.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dolasci.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.dolasci.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.dolasci.Location = new System.Drawing.Point(406, 233);
             this.dolasci.Name = "dolasci";
             this.dolasci.Size = new System.Drawing.Size(397, 65);
             this.dolasci.TabIndex = 4;
-            this.dolasci.Text = "Dolasci";
-            this.dolasci.UseVisualStyleBackColor = true;
+            this.dolasci.Text = "Praćenje dolazaka/odlazaka";
+            this.dolasci.UseVisualStyleBackColor = false;
             this.dolasci.Click += new System.EventHandler(this.dolasci_Click);
             // 
             // evidencija
