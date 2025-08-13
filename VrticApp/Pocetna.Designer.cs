@@ -152,11 +152,12 @@
             // 
             this.analiza.Dock = System.Windows.Forms.DockStyle.Fill;
             this.analiza.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
+            this.analiza.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.analiza.Location = new System.Drawing.Point(406, 446);
             this.analiza.Name = "analiza";
             this.analiza.Size = new System.Drawing.Size(397, 65);
             this.analiza.TabIndex = 7;
-            this.analiza.Text = "Analiza dolazaka";
+            this.analiza.Text = "Statistika dolazaka";
             this.analiza.UseVisualStyleBackColor = true;
             this.analiza.Click += new System.EventHandler(this.analiza_Click);
             // 

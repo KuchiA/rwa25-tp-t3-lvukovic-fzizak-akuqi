@@ -39,8 +39,10 @@ namespace VrticApp
             this.dateTimePickerDatum = new System.Windows.Forms.DateTimePicker();
             this.lblCaption = new System.Windows.Forms.Label();
             this.btnGenerirajMjesecniIzvjestaj = new System.Windows.Forms.Button();
-            this.btnIspraziPolja = new System.Windows.Forms.Button();
+            this.btnNoviDolazak = new System.Windows.Forms.Button();
             this.btnSpremiEvidenciju = new System.Windows.Forms.Button();
+            this.lblPrijavljen = new System.Windows.Forms.Label();
+            this.btnPovratak = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvidencija)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +106,7 @@ namespace VrticApp
             // 
             this.lblCaption.AutoSize = true;
             this.lblCaption.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCaption.Location = new System.Drawing.Point(183, 26);
+            this.lblCaption.Location = new System.Drawing.Point(194, 9);
             this.lblCaption.Name = "lblCaption";
             this.lblCaption.Size = new System.Drawing.Size(432, 25);
             this.lblCaption.TabIndex = 20;
@@ -123,18 +125,18 @@ namespace VrticApp
             this.btnGenerirajMjesecniIzvjestaj.UseVisualStyleBackColor = false;
             this.btnGenerirajMjesecniIzvjestaj.Click += new System.EventHandler(this.btnGenerirajMjesecniIzvjestaj_Click);
             // 
-            // btnIspraziPolja
+            // btnNoviDolazak
             // 
-            this.btnIspraziPolja.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnIspraziPolja.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIspraziPolja.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnIspraziPolja.Location = new System.Drawing.Point(310, 392);
-            this.btnIspraziPolja.Name = "btnIspraziPolja";
-            this.btnIspraziPolja.Size = new System.Drawing.Size(150, 32);
-            this.btnIspraziPolja.TabIndex = 28;
-            this.btnIspraziPolja.Text = "Isprazni polja";
-            this.btnIspraziPolja.UseVisualStyleBackColor = false;
-            this.btnIspraziPolja.Click += new System.EventHandler(this.btnIspraziPolja_Click);
+            this.btnNoviDolazak.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnNoviDolazak.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoviDolazak.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNoviDolazak.Location = new System.Drawing.Point(310, 392);
+            this.btnNoviDolazak.Name = "btnNoviDolazak";
+            this.btnNoviDolazak.Size = new System.Drawing.Size(150, 32);
+            this.btnNoviDolazak.TabIndex = 28;
+            this.btnNoviDolazak.Text = "Novi dolazak";
+            this.btnNoviDolazak.UseVisualStyleBackColor = false;
+            this.btnNoviDolazak.Click += new System.EventHandler(this.btnNoviDolazak_Click);
             // 
             // btnSpremiEvidenciju
             // 
@@ -149,11 +151,35 @@ namespace VrticApp
             this.btnSpremiEvidenciju.UseVisualStyleBackColor = false;
             this.btnSpremiEvidenciju.Click += new System.EventHandler(this.btnSpremiEvidenciju_Click);
             // 
+            // lblPrijavljen
+            // 
+            this.lblPrijavljen.AutoSize = true;
+            this.lblPrijavljen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrijavljen.Location = new System.Drawing.Point(12, 9);
+            this.lblPrijavljen.Name = "lblPrijavljen";
+            this.lblPrijavljen.Size = new System.Drawing.Size(0, 13);
+            this.lblPrijavljen.TabIndex = 30;
+            // 
+            // btnPovratak
+            // 
+            this.btnPovratak.BackColor = System.Drawing.Color.Red;
+            this.btnPovratak.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPovratak.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPovratak.Location = new System.Drawing.Point(656, 12);
+            this.btnPovratak.Name = "btnPovratak";
+            this.btnPovratak.Size = new System.Drawing.Size(142, 31);
+            this.btnPovratak.TabIndex = 31;
+            this.btnPovratak.Text = "Povratak na glavni meni";
+            this.btnPovratak.UseVisualStyleBackColor = false;
+            this.btnPovratak.Click += new System.EventHandler(this.btnPovratak_Click);
+            // 
             // FrmAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPovratak);
+            this.Controls.Add(this.lblPrijavljen);
             this.Controls.Add(this.dgvEvidencija);
             this.Controls.Add(this.comboBoxGrupa);
             this.Controls.Add(this.lblGroup);
@@ -162,7 +188,7 @@ namespace VrticApp
             this.Controls.Add(this.dateTimePickerDatum);
             this.Controls.Add(this.lblCaption);
             this.Controls.Add(this.btnGenerirajMjesecniIzvjestaj);
-            this.Controls.Add(this.btnIspraziPolja);
+            this.Controls.Add(this.btnNoviDolazak);
             this.Controls.Add(this.btnSpremiEvidenciju);
             this.Name = "FrmAttendance";
             this.Text = "FrmAttendance";
@@ -188,7 +214,9 @@ namespace VrticApp
         private System.Windows.Forms.DateTimePicker dateTimePickerDatum;
         private System.Windows.Forms.Label lblCaption;
         private System.Windows.Forms.Button btnGenerirajMjesecniIzvjestaj;
-        private System.Windows.Forms.Button btnIspraziPolja;
+        private System.Windows.Forms.Button btnNoviDolazak;
         private System.Windows.Forms.Button btnSpremiEvidenciju;
+        private Label lblPrijavljen;
+        private Button btnPovratak;
     }
 }

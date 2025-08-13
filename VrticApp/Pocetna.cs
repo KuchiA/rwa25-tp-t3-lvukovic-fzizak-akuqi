@@ -46,7 +46,7 @@ namespace VrticApp
 
         private void dolasci_Click(object sender, EventArgs e)
         {
-            var FrmTracking = new FrmAttendance();
+            var FrmTracking = new FrmAttendance(_trenutniKorisnik);
             Hide();
             FrmTracking.ShowDialog();
         }
@@ -67,7 +67,7 @@ namespace VrticApp
 
         private void analiza_Click(object sender, EventArgs e)
         {
-            var FrmStatistics = new FrmStatistics();
+            var FrmStatistics = new FrmStatistics(_trenutniKorisnik);
             Hide();
             FrmStatistics.ShowDialog();
         }

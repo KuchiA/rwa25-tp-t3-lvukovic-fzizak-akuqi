@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using VrticApp.Models;
 using VrticApp.Services;
@@ -9,16 +10,23 @@ namespace VrticApp
     public partial class FrmAttendance : Form
     {
         private readonly DolazakService _dolazakService;
+        private readonly Korisnik _prijavljeniKorisnik;
 
-        public FrmAttendance()
+        public FrmAttendance(Korisnik korisnik)
         {
             InitializeComponent();
             _dolazakService = new DolazakService();
+            _prijavljeniKorisnik = korisnik;
         }
 
 
         private void FrmAttendance_Load_1(object sender, EventArgs e)
         {
+            if (_prijavljeniKorisnik != null)
+            {
+                lblPrijavljen.Text = $"Prijavljeni ste kao: {_prijavljeniKorisnik.Uloga}";
+            }
+
             comboBoxGrupa.DataSource = _dolazakService.GetGroups();
             comboBoxGrupa.DisplayMember = "Naziv";
             comboBoxGrupa.ValueMember = "GrupaId";
@@ -91,15 +99,41 @@ namespace VrticApp
             }
         }
 
-
-        private void btnIspraziPolja_Click(object sender, EventArgs e)
+        private void btnNoviDolazak_Click(object sender, EventArgs e)
         {
+            if (comboBoxGrupa.SelectedItem == null)
+            {
+                MessageBox.Show("Odaberite grupu!");
+                return;
+            }
 
+            var grupa = (Grupa)comboBoxGrupa.SelectedItem;
+            DateTime odabraniDatum = dateTimePickerDatum.Value.Date;
+
+            frmNoviDolazak forma = new frmNoviDolazak(grupa.GrupaId, odabraniDatum);
+            if (forma.ShowDialog() == DialogResult.OK)
+            {
+                // Ponovno učitaj dolaske
+                dgvEvidencija.DataSource = _dolazakService.GetDolazak(grupa.GrupaId, odabraniDatum);
+            }
         }
 
         private void btnGenerirajMjesecniIzvjestaj_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnPovratak_Click(object sender, EventArgs e)
+        {
+            // Pronađi otvorenu instancu Pocetna forme
+            Pocetna pocetnaForma = Application.OpenForms.OfType<Pocetna>().FirstOrDefault();
+
+            if (pocetnaForma != null)
+            {
+                pocetnaForma.Show(); // Prikaži postojeću Pocetna formu
+            }
+
+            this.Close(); // Zatvori trenutnu formu
         }
     }
 }
