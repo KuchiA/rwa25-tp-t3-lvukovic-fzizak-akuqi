@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using VrticApp.Models;
 
 namespace VrticApp.Services
@@ -12,29 +13,107 @@ namespace VrticApp.Services
         public List<Grupa> GetGroups()
         {
             List<Grupa> grupe = new List<Grupa>();
-
-            using (SqlConnection conn = new SqlConnection(_connectionString))
+            try
             {
-                conn.Open();
-
-                string query = "SELECT grupa_id, naziv, kapacitet FROM Grupa";
-
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                using (SqlDataReader reader = cmd.ExecuteReader())
+                using (SqlConnection conn = new SqlConnection(_connectionString))
                 {
-                    while (reader.Read())
+                    conn.Open();
+                    string query = "SELECT grupa_id, naziv, kapacitet FROM Grupa";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        grupe.Add(new Grupa
+                        while (reader.Read())
                         {
-                            GrupaId = reader.GetInt32(0),
-                            Naziv = reader.GetString(1),
-                            Kapacitet = reader.GetInt32(2)
-                        });
+                            grupe.Add(new Grupa
+                            {
+                                GrupaId = reader.GetInt32(0),
+                                Naziv = reader.GetString(1),
+                                Kapacitet = reader.GetInt32(2)
+                            });
+                        }
                     }
                 }
             }
-
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri dohvatu grupa iz baze: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<Grupa>();
+            }
             return grupe;
+        }
+
+        public bool ProvjeriPostojeciDolazak(int dijeteId, DateTime datum)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Dolazak WHERE dijete_id = @dijeteId AND datum = @datum";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dijeteId", dijeteId);
+                        cmd.Parameters.AddWithValue("@datum", datum.Date);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri provjeri dolaska: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return true;
+            }
+        }
+
+        public int GetNextDolazakId()
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT ISNULL(MAX(dolazak_id), 0) FROM Dolazak";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        int maxId = (int)cmd.ExecuteScalar();
+                        return maxId + 1;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Greška pri dohvatu sljedećeg DolazakId: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0; // Vraća 0 ili neku drugu vrijednost u slučaju greške
+                }
+            }
+        }
+
+        public bool InsertNewDolazak(int dolazakId, int dijeteId, DateTime datum, TimeSpan vrijemeDolaska, TimeSpan vrijemeOdlaska)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO Dolazak (dolazak_id, dijete_id, datum, vrijeme_dolaska, vrijeme_odlaska)
+                             VALUES (@dolazakId, @dijeteId, @datum, @vrijemeDolaska, @vrijemeOdlaska)";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dolazakId", dolazakId);
+                        cmd.Parameters.AddWithValue("@dijeteId", dijeteId);
+                        cmd.Parameters.AddWithValue("@vrijemeDolaska", vrijemeDolaska);
+                        cmd.Parameters.AddWithValue("@vrijemeOdlaska", (object)vrijemeOdlaska ?? DBNull.Value);
+                        cmd.Parameters.AddWithValue("@datum", datum.Date);
+                        int rowsAffected = cmd.ExecuteNonQuery();
+                        return rowsAffected > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri spremanju novog dolaska: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public List<Dolazak> GetDolazak(int grupaId, DateTime datum)
@@ -77,6 +156,30 @@ namespace VrticApp.Services
             }
 
             return dolasci;
+        }
+
+        public bool IsDijeteInGroup(int dijeteId, int grupaId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = "SELECT COUNT(*) FROM Dijete WHERE dijete_id = @dijeteId AND grupa_id = @grupaId";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@dijeteId", dijeteId);
+                        cmd.Parameters.AddWithValue("@grupaId", grupaId);
+                        int count = (int)cmd.ExecuteScalar();
+                        return count > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri provjeri djeteta u grupi: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
         }
 
         public bool UpdateDolazak(List<Dolazak> dolasci)

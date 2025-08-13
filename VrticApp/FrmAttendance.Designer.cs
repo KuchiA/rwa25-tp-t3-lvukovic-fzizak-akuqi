@@ -42,7 +42,7 @@ namespace VrticApp
             this.btnSpremiEvidenciju = new System.Windows.Forms.Button();
             this.lblPrijavljen = new System.Windows.Forms.Label();
             this.btnPovratak = new System.Windows.Forms.Button();
-            this.btnSpremi = new System.Windows.Forms.Button();
+            this.btnSpremiNoviDolazak = new System.Windows.Forms.Button();
             this.txtDijeteId = new System.Windows.Forms.TextBox();
             this.txtDolazakId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -173,17 +173,18 @@ namespace VrticApp
             this.btnPovratak.UseVisualStyleBackColor = false;
             this.btnPovratak.Click += new System.EventHandler(this.btnPovratak_Click);
             // 
-            // btnSpremi
+            // btnSpremiNoviDolazak
             // 
-            this.btnSpremi.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnSpremi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSpremi.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSpremi.Location = new System.Drawing.Point(361, 573);
-            this.btnSpremi.Name = "btnSpremi";
-            this.btnSpremi.Size = new System.Drawing.Size(164, 30);
-            this.btnSpremi.TabIndex = 63;
-            this.btnSpremi.Text = "Spremi";
-            this.btnSpremi.UseVisualStyleBackColor = false;
+            this.btnSpremiNoviDolazak.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnSpremiNoviDolazak.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpremiNoviDolazak.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSpremiNoviDolazak.Location = new System.Drawing.Point(361, 573);
+            this.btnSpremiNoviDolazak.Name = "btnSpremiNoviDolazak";
+            this.btnSpremiNoviDolazak.Size = new System.Drawing.Size(164, 30);
+            this.btnSpremiNoviDolazak.TabIndex = 63;
+            this.btnSpremiNoviDolazak.Text = "Spremi novi dolazak";
+            this.btnSpremiNoviDolazak.UseVisualStyleBackColor = false;
+            this.btnSpremiNoviDolazak.Click += new System.EventHandler(this.btnSpremiNoviDolazak_Click);
             // 
             // txtDijeteId
             // 
@@ -305,7 +306,7 @@ namespace VrticApp
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 657);
-            this.Controls.Add(this.btnSpremi);
+            this.Controls.Add(this.btnSpremiNoviDolazak);
             this.Controls.Add(this.txtDijeteId);
             this.Controls.Add(this.txtDolazakId);
             this.Controls.Add(this.label4);
@@ -357,7 +358,7 @@ namespace VrticApp
         private System.Windows.Forms.Button btnSpremiEvidenciju;
         private Label lblPrijavljen;
         private Button btnPovratak;
-        private Button btnSpremi;
+        private Button btnSpremiNoviDolazak;
         private TextBox txtDijeteId;
         private TextBox txtDolazakId;
         private Label label4;
