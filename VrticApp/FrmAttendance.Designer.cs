@@ -197,6 +197,7 @@ namespace VrticApp
             // 
             this.txtDolazakId.Location = new System.Drawing.Point(291, 484);
             this.txtDolazakId.Name = "txtDolazakId";
+            this.txtDolazakId.ReadOnly = true;
             this.txtDolazakId.Size = new System.Drawing.Size(124, 20);
             this.txtDolazakId.TabIndex = 61;
             // 
