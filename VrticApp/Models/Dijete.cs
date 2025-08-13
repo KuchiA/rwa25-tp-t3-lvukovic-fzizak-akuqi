@@ -14,5 +14,7 @@ namespace VrticApp.Models
         public DateTime DatumRodenja { get; set; }
         public string EmailRoditelja { get; set; }
         public int GrupaId { get; set; }
+
+        public string ImePrezime => $"{Ime} {Prezime}";
     }
 }

@@ -99,24 +99,6 @@ namespace VrticApp
             }
         }
 
-        private void btnNoviDolazak_Click(object sender, EventArgs e)
-        {
-            if (comboBoxGrupa.SelectedItem == null)
-            {
-                MessageBox.Show("Odaberite grupu!");
-                return;
-            }
-
-            var grupa = (Grupa)comboBoxGrupa.SelectedItem;
-            DateTime odabraniDatum = dateTimePickerDatum.Value.Date;
-
-            frmNoviDolazak forma = new frmNoviDolazak(grupa.GrupaId, odabraniDatum);
-            if (forma.ShowDialog() == DialogResult.OK)
-            {
-                // Ponovno učitaj dolaske
-                dgvEvidencija.DataSource = _dolazakService.GetDolazak(grupa.GrupaId, odabraniDatum);
-            }
-        }
 
         private void btnGenerirajMjesecniIzvjestaj_Click(object sender, EventArgs e)
         {

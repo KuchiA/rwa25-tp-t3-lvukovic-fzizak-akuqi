@@ -39,10 +39,23 @@ namespace VrticApp
             this.dateTimePickerDatum = new System.Windows.Forms.DateTimePicker();
             this.lblCaption = new System.Windows.Forms.Label();
             this.btnGenerirajMjesecniIzvjestaj = new System.Windows.Forms.Button();
-            this.btnNoviDolazak = new System.Windows.Forms.Button();
             this.btnSpremiEvidenciju = new System.Windows.Forms.Button();
             this.lblPrijavljen = new System.Windows.Forms.Label();
             this.btnPovratak = new System.Windows.Forms.Button();
+            this.btnSpremi = new System.Windows.Forms.Button();
+            this.txtDijeteId = new System.Windows.Forms.TextBox();
+            this.txtDolazakId = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.dtpDatum = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.dtpOdlazak = new System.Windows.Forms.DateTimePicker();
+            this.dtpDolazak = new System.Windows.Forms.DateTimePicker();
+            this.cmbGrupa = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvidencija)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,9 +90,9 @@ namespace VrticApp
             this.btnPrikaziEvidenciju.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPrikaziEvidenciju.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrikaziEvidenciju.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(476, 119);
+            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(291, 123);
             this.btnPrikaziEvidenciju.Name = "btnPrikaziEvidenciju";
-            this.btnPrikaziEvidenciju.Size = new System.Drawing.Size(213, 34);
+            this.btnPrikaziEvidenciju.Size = new System.Drawing.Size(159, 31);
             this.btnPrikaziEvidenciju.TabIndex = 23;
             this.btnPrikaziEvidenciju.Text = "Prikaži evidenciju";
             this.btnPrikaziEvidenciju.UseVisualStyleBackColor = false;
@@ -117,35 +130,22 @@ namespace VrticApp
             this.btnGenerirajMjesecniIzvjestaj.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnGenerirajMjesecniIzvjestaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerirajMjesecniIzvjestaj.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGenerirajMjesecniIzvjestaj.Location = new System.Drawing.Point(490, 392);
+            this.btnGenerirajMjesecniIzvjestaj.Location = new System.Drawing.Point(476, 123);
             this.btnGenerirajMjesecniIzvjestaj.Name = "btnGenerirajMjesecniIzvjestaj";
-            this.btnGenerirajMjesecniIzvjestaj.Size = new System.Drawing.Size(199, 32);
+            this.btnGenerirajMjesecniIzvjestaj.Size = new System.Drawing.Size(215, 31);
             this.btnGenerirajMjesecniIzvjestaj.TabIndex = 29;
             this.btnGenerirajMjesecniIzvjestaj.Text = "Generiraj mjesečni izvještaj";
             this.btnGenerirajMjesecniIzvjestaj.UseVisualStyleBackColor = false;
             this.btnGenerirajMjesecniIzvjestaj.Click += new System.EventHandler(this.btnGenerirajMjesecniIzvjestaj_Click);
-            // 
-            // btnNoviDolazak
-            // 
-            this.btnNoviDolazak.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnNoviDolazak.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNoviDolazak.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnNoviDolazak.Location = new System.Drawing.Point(310, 392);
-            this.btnNoviDolazak.Name = "btnNoviDolazak";
-            this.btnNoviDolazak.Size = new System.Drawing.Size(150, 32);
-            this.btnNoviDolazak.TabIndex = 28;
-            this.btnNoviDolazak.Text = "Novi dolazak";
-            this.btnNoviDolazak.UseVisualStyleBackColor = false;
-            this.btnNoviDolazak.Click += new System.EventHandler(this.btnNoviDolazak_Click);
             // 
             // btnSpremiEvidenciju
             // 
             this.btnSpremiEvidenciju.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnSpremiEvidenciju.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpremiEvidenciju.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSpremiEvidenciju.Location = new System.Drawing.Point(115, 393);
+            this.btnSpremiEvidenciju.Location = new System.Drawing.Point(115, 123);
             this.btnSpremiEvidenciju.Name = "btnSpremiEvidenciju";
-            this.btnSpremiEvidenciju.Size = new System.Drawing.Size(142, 31);
+            this.btnSpremiEvidenciju.Size = new System.Drawing.Size(159, 31);
             this.btnSpremiEvidenciju.TabIndex = 27;
             this.btnSpremiEvidenciju.Text = "Spremi evidenciju";
             this.btnSpremiEvidenciju.UseVisualStyleBackColor = false;
@@ -173,11 +173,152 @@ namespace VrticApp
             this.btnPovratak.UseVisualStyleBackColor = false;
             this.btnPovratak.Click += new System.EventHandler(this.btnPovratak_Click);
             // 
+            // btnSpremi
+            // 
+            this.btnSpremi.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnSpremi.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSpremi.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnSpremi.Location = new System.Drawing.Point(361, 573);
+            this.btnSpremi.Name = "btnSpremi";
+            this.btnSpremi.Size = new System.Drawing.Size(164, 30);
+            this.btnSpremi.TabIndex = 63;
+            this.btnSpremi.Text = "Spremi";
+            this.btnSpremi.UseVisualStyleBackColor = false;
+            // 
+            // txtDijeteId
+            // 
+            this.txtDijeteId.Location = new System.Drawing.Point(560, 484);
+            this.txtDijeteId.Name = "txtDijeteId";
+            this.txtDijeteId.Size = new System.Drawing.Size(146, 20);
+            this.txtDijeteId.TabIndex = 62;
+            // 
+            // txtDolazakId
+            // 
+            this.txtDolazakId.Location = new System.Drawing.Point(291, 484);
+            this.txtDolazakId.Name = "txtDolazakId";
+            this.txtDolazakId.Size = new System.Drawing.Size(124, 20);
+            this.txtDolazakId.TabIndex = 61;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(446, 485);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(59, 16);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Dijete Id:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(304, 391);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(261, 25);
+            this.label1.TabIndex = 59;
+            this.label1.Text = "Dodavanje novog dolaska";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(177, 488);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 16);
+            this.label3.TabIndex = 58;
+            this.label3.Text = "Dolazak Id:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(446, 534);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(108, 16);
+            this.label2.TabIndex = 57;
+            this.label2.Text = "Vrijeme odlaska:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(177, 533);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 16);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Vrijeme dolaska:";
+            // 
+            // dtpDatum
+            // 
+            this.dtpDatum.Location = new System.Drawing.Point(560, 440);
+            this.dtpDatum.Name = "dtpDatum";
+            this.dtpDatum.Size = new System.Drawing.Size(146, 20);
+            this.dtpDatum.TabIndex = 55;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(446, 440);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(49, 16);
+            this.label6.TabIndex = 54;
+            this.label6.Text = "Datum:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(177, 440);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(47, 16);
+            this.label7.TabIndex = 53;
+            this.label7.Text = "Grupa:";
+            // 
+            // dtpOdlazak
+            // 
+            this.dtpOdlazak.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpOdlazak.Location = new System.Drawing.Point(560, 534);
+            this.dtpOdlazak.Name = "dtpOdlazak";
+            this.dtpOdlazak.Size = new System.Drawing.Size(146, 20);
+            this.dtpOdlazak.TabIndex = 52;
+            // 
+            // dtpDolazak
+            // 
+            this.dtpDolazak.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.dtpDolazak.Location = new System.Drawing.Point(291, 533);
+            this.dtpDolazak.Name = "dtpDolazak";
+            this.dtpDolazak.Size = new System.Drawing.Size(124, 20);
+            this.dtpDolazak.TabIndex = 51;
+            // 
+            // cmbGrupa
+            // 
+            this.cmbGrupa.FormattingEnabled = true;
+            this.cmbGrupa.Location = new System.Drawing.Point(291, 439);
+            this.cmbGrupa.Name = "cmbGrupa";
+            this.cmbGrupa.Size = new System.Drawing.Size(124, 21);
+            this.cmbGrupa.TabIndex = 50;
+            // 
             // FrmAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(807, 657);
+            this.Controls.Add(this.btnSpremi);
+            this.Controls.Add(this.txtDijeteId);
+            this.Controls.Add(this.txtDolazakId);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.dtpDatum);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dtpOdlazak);
+            this.Controls.Add(this.dtpDolazak);
+            this.Controls.Add(this.cmbGrupa);
             this.Controls.Add(this.btnPovratak);
             this.Controls.Add(this.lblPrijavljen);
             this.Controls.Add(this.dgvEvidencija);
@@ -188,7 +329,6 @@ namespace VrticApp
             this.Controls.Add(this.dateTimePickerDatum);
             this.Controls.Add(this.lblCaption);
             this.Controls.Add(this.btnGenerirajMjesecniIzvjestaj);
-            this.Controls.Add(this.btnNoviDolazak);
             this.Controls.Add(this.btnSpremiEvidenciju);
             this.Name = "FrmAttendance";
             this.Text = "FrmAttendance";
@@ -214,9 +354,22 @@ namespace VrticApp
         private System.Windows.Forms.DateTimePicker dateTimePickerDatum;
         private System.Windows.Forms.Label lblCaption;
         private System.Windows.Forms.Button btnGenerirajMjesecniIzvjestaj;
-        private System.Windows.Forms.Button btnNoviDolazak;
         private System.Windows.Forms.Button btnSpremiEvidenciju;
         private Label lblPrijavljen;
         private Button btnPovratak;
+        private Button btnSpremi;
+        private TextBox txtDijeteId;
+        private TextBox txtDolazakId;
+        private Label label4;
+        private Label label1;
+        private Label label3;
+        private Label label2;
+        private Label label5;
+        private DateTimePicker dtpDatum;
+        private Label label6;
+        private Label label7;
+        private DateTimePicker dtpOdlazak;
+        private DateTimePicker dtpDolazak;
+        private ComboBox cmbGrupa;
     }
 }
