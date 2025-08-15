@@ -12,11 +12,17 @@ namespace VrticApp
         private readonly DolazakService _dolazakService;
         private readonly Korisnik _prijavljeniKorisnik;
 
+        private List<Dijete> _currentDjecaList;
+        private List<Dolazak> _currentDolazakList;
+        private bool _sortAscending = true;
+
         public FrmAttendance(Korisnik korisnik)
         {
             InitializeComponent();
             _dolazakService = new DolazakService();
             _prijavljeniKorisnik = korisnik;
+
+            this.dgvEvidencija.ColumnHeaderMouseClick += new DataGridViewCellMouseEventHandler(this.dgvEvidencija_ColumnHeaderMouseClick);
         }
 
         private void FrmAttendance_Load_1(object sender, EventArgs e)
@@ -58,8 +64,6 @@ namespace VrticApp
                 dtpOdlazak.ShowUpDown = true;
                 dtpOdlazak.Value = DateTime.Today.Date + DateTime.Now.TimeOfDay;
 
-                // Tu se automatski popunjava txtDolazakId
-                // Vidljiv je, ali je ReadOnly na true u dizajneru
                 txtDolazakId.Text = _dolazakService.GetNextDolazakId().ToString();
             }
             catch (Exception ex)
@@ -77,26 +81,18 @@ namespace VrticApp
                     int groupId = Convert.ToInt32(comboBoxGrupa.SelectedValue);
                     DateTime date = dateTimePickerDatum.Value.Date;
 
-                    var lista = _dolazakService.GetDolazak(groupId, date);
-                    if (lista == null || lista.Count == 0)
+                    _currentDolazakList = _dolazakService.GetDolazak(groupId, date);
+                    _currentDjecaList = null;
+
+                    if (_currentDolazakList == null || _currentDolazakList.Count == 0)
                     {
                         MessageBox.Show("Nema podataka za odabranu grupu i datum.", "Greška!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         dgvEvidencija.DataSource = null;
                         return;
                     }
 
-                    dgvEvidencija.DataSource = lista;
-
-                    if (dgvEvidencija.Columns.Contains("ime"))
-                        dgvEvidencija.Columns["ime"].HeaderText = "Ime";
-                    if (dgvEvidencija.Columns.Contains("prezime"))
-                        dgvEvidencija.Columns["prezime"].HeaderText = "Prezime";
-                    if (dgvEvidencija.Columns.Contains("datum"))
-                        dgvEvidencija.Columns["datum"].HeaderText = "Datum";
-                    if (dgvEvidencija.Columns.Contains("vrijeme_dolaska"))
-                        dgvEvidencija.Columns["vrijeme_dolaska"].HeaderText = "Vrijeme dolaska";
-                    if (dgvEvidencija.Columns.Contains("vrijeme_odlaska"))
-                        dgvEvidencija.Columns["vrijeme_odlaska"].HeaderText = "Vrijeme odlaska";
+                    dgvEvidencija.DataSource = _currentDolazakList;
+                    ApplyDataGridViewSettings("dolazak");
                 }
                 else
                 {
@@ -139,11 +135,6 @@ namespace VrticApp
             }
         }
 
-        private void btnGenerirajMjesecniIzvjestaj_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnPovratak_Click(object sender, EventArgs e)
         {
             Pocetna pocetnaForma = Application.OpenForms.OfType<Pocetna>().FirstOrDefault();
@@ -172,7 +163,7 @@ namespace VrticApp
                     return;
                 }
 
-                int grupaId = Convert.ToInt32(cmbGrupa.SelectedValue); // Dohvaća se ID odabrane grupe
+                int grupaId = Convert.ToInt32(cmbGrupa.SelectedValue);
 
                 if (!_dolazakService.IsDijeteInGroup(dijeteId, grupaId))
                 {
@@ -223,6 +214,104 @@ namespace VrticApp
             catch (Exception ex)
             {
                 MessageBox.Show("Greška: " + ex.Message, "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnPopis_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _currentDjecaList = _dolazakService.GetAllChildren();
+                _currentDolazakList = null;
+
+                if (_currentDjecaList == null || _currentDjecaList.Count == 0)
+                {
+                    MessageBox.Show("Nema podataka o djeci.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    dgvEvidencija.DataSource = null;
+                    return;
+                }
+
+                dgvEvidencija.DataSource = _currentDjecaList;
+                ApplyDataGridViewSettings("dijete");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri prikazu popisa djece: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvEvidencija_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            string columnName = dgvEvidencija.Columns[e.ColumnIndex].Name;
+
+            if (_currentDjecaList != null && dgvEvidencija.DataSource == _currentDjecaList)
+            {
+                if (columnName == "Prezime")
+                {
+                    _currentDjecaList = _sortAscending ? _currentDjecaList.OrderBy(d => d.Prezime).ToList() : _currentDjecaList.OrderByDescending(d => d.Prezime).ToList();
+                }
+                else if (columnName == "NazivGrupe")
+                {
+                    _currentDjecaList = _sortAscending ? _currentDjecaList.OrderBy(d => d.NazivGrupe).ToList() : _currentDjecaList.OrderByDescending(d => d.NazivGrupe).ToList();
+                }
+                else
+                {
+                    return; // Ne radimo ništa ako stupac nije predviđen za sortiranje
+                }
+
+                dgvEvidencija.DataSource = null;
+                dgvEvidencija.DataSource = _currentDjecaList;
+                ApplyDataGridViewSettings("dijete");
+            }
+            else if (_currentDolazakList != null && dgvEvidencija.DataSource == _currentDolazakList)
+            {
+                if (columnName == "prezime")
+                {
+                    _currentDolazakList = _sortAscending ? _currentDolazakList.OrderBy(d => d.Prezime).ToList() : _currentDolazakList.OrderByDescending(d => d.Prezime).ToList();
+                }
+                else if (columnName == "datum")
+                {
+                    _currentDolazakList = _sortAscending ? _currentDolazakList.OrderBy(d => d.Datum).ToList() : _currentDolazakList.OrderByDescending(d => d.Datum).ToList();
+                }
+                else
+                {
+                    return;
+                }
+
+                dgvEvidencija.DataSource = null;
+                dgvEvidencija.DataSource = _currentDolazakList;
+                ApplyDataGridViewSettings("dolazak");
+            }
+
+            _sortAscending = !_sortAscending;
+        }
+
+        private void ApplyDataGridViewSettings(string type)
+        {
+            if (type == "dijete")
+            {
+                dgvEvidencija.Columns["DijeteId"].HeaderText = "ID djeteta";
+                dgvEvidencija.Columns["Ime"].HeaderText = "Ime";
+                dgvEvidencija.Columns["Prezime"].HeaderText = "Prezime ↓";
+                dgvEvidencija.Columns["DatumRodenja"].HeaderText = "Datum rođenja";
+                dgvEvidencija.Columns["EmailRoditelja"].HeaderText = "Email roditelja";
+                dgvEvidencija.Columns["NazivGrupe"].HeaderText = "Grupa ↓";
+
+                dgvEvidencija.Columns["GrupaId"].Visible = false;
+                dgvEvidencija.Columns["ImePrezime"].Visible = false;
+            }
+            else if (type == "dolazak")
+            {
+                if (dgvEvidencija.Columns.Contains("ime"))
+                    dgvEvidencija.Columns["ime"].HeaderText = "Ime";
+                if (dgvEvidencija.Columns.Contains("prezime"))
+                    dgvEvidencija.Columns["prezime"].HeaderText = "Prezime";
+                if (dgvEvidencija.Columns.Contains("datum"))
+                    dgvEvidencija.Columns["datum"].HeaderText = "Datum";
+                if (dgvEvidencija.Columns.Contains("vrijeme_dolaska"))
+                    dgvEvidencija.Columns["vrijeme_dolaska"].HeaderText = "Vrijeme dolaska";
+                if (dgvEvidencija.Columns.Contains("vrijeme_odlaska"))
+                    dgvEvidencija.Columns["vrijeme_odlaska"].HeaderText = "Vrijeme odlaska";
             }
         }
     }

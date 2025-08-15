@@ -38,7 +38,7 @@ namespace VrticApp
             this.lblDate = new System.Windows.Forms.Label();
             this.dateTimePickerDatum = new System.Windows.Forms.DateTimePicker();
             this.lblCaption = new System.Windows.Forms.Label();
-            this.btnGenerirajMjesecniIzvjestaj = new System.Windows.Forms.Button();
+            this.btnPopis = new System.Windows.Forms.Button();
             this.btnSpremiEvidenciju = new System.Windows.Forms.Button();
             this.lblPrijavljen = new System.Windows.Forms.Label();
             this.btnPovratak = new System.Windows.Forms.Button();
@@ -66,6 +66,7 @@ namespace VrticApp
             this.dgvEvidencija.Name = "dgvEvidencija";
             this.dgvEvidencija.Size = new System.Drawing.Size(742, 195);
             this.dgvEvidencija.TabIndex = 26;
+            this.dgvEvidencija.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvEvidencija_ColumnHeaderMouseClick);
             // 
             // comboBoxGrupa
             // 
@@ -90,7 +91,7 @@ namespace VrticApp
             this.btnPrikaziEvidenciju.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPrikaziEvidenciju.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrikaziEvidenciju.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(291, 123);
+            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(300, 123);
             this.btnPrikaziEvidenciju.Name = "btnPrikaziEvidenciju";
             this.btnPrikaziEvidenciju.Size = new System.Drawing.Size(159, 31);
             this.btnPrikaziEvidenciju.TabIndex = 23;
@@ -125,18 +126,18 @@ namespace VrticApp
             this.lblCaption.TabIndex = 20;
             this.lblCaption.Text = "Praćenje dolazaka i odlazaka djece iz vrtića";
             // 
-            // btnGenerirajMjesecniIzvjestaj
+            // btnPopis
             // 
-            this.btnGenerirajMjesecniIzvjestaj.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.btnGenerirajMjesecniIzvjestaj.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerirajMjesecniIzvjestaj.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnGenerirajMjesecniIzvjestaj.Location = new System.Drawing.Point(476, 123);
-            this.btnGenerirajMjesecniIzvjestaj.Name = "btnGenerirajMjesecniIzvjestaj";
-            this.btnGenerirajMjesecniIzvjestaj.Size = new System.Drawing.Size(215, 31);
-            this.btnGenerirajMjesecniIzvjestaj.TabIndex = 29;
-            this.btnGenerirajMjesecniIzvjestaj.Text = "Generiraj mjesečni izvještaj";
-            this.btnGenerirajMjesecniIzvjestaj.UseVisualStyleBackColor = false;
-            this.btnGenerirajMjesecniIzvjestaj.Click += new System.EventHandler(this.btnGenerirajMjesecniIzvjestaj_Click);
+            this.btnPopis.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPopis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPopis.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPopis.Location = new System.Drawing.Point(476, 123);
+            this.btnPopis.Name = "btnPopis";
+            this.btnPopis.Size = new System.Drawing.Size(215, 31);
+            this.btnPopis.TabIndex = 29;
+            this.btnPopis.Text = "Generiraj popis djece";
+            this.btnPopis.UseVisualStyleBackColor = false;
+            this.btnPopis.Click += new System.EventHandler(this.btnPopis_Click);
             // 
             // btnSpremiEvidenciju
             // 
@@ -330,7 +331,7 @@ namespace VrticApp
             this.Controls.Add(this.lblDate);
             this.Controls.Add(this.dateTimePickerDatum);
             this.Controls.Add(this.lblCaption);
-            this.Controls.Add(this.btnGenerirajMjesecniIzvjestaj);
+            this.Controls.Add(this.btnPopis);
             this.Controls.Add(this.btnSpremiEvidenciju);
             this.Name = "FrmAttendance";
             this.Text = "FrmAttendance";
@@ -355,7 +356,7 @@ namespace VrticApp
         private System.Windows.Forms.Label lblDate;
         private System.Windows.Forms.DateTimePicker dateTimePickerDatum;
         private System.Windows.Forms.Label lblCaption;
-        private System.Windows.Forms.Button btnGenerirajMjesecniIzvjestaj;
+        private System.Windows.Forms.Button btnPopis;
         private System.Windows.Forms.Button btnSpremiEvidenciju;
         private Label lblPrijavljen;
         private Button btnPovratak;

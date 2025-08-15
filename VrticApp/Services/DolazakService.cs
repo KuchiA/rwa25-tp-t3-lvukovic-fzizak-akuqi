@@ -213,5 +213,43 @@ namespace VrticApp.Services
             return true;
         }
 
+        public List<Dijete> GetAllChildren()
+        {
+            List<Dijete> djeca = new List<Dijete>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = @"
+                        SELECT d.dijete_id, d.ime, d.prezime, d.datum_rodenja, d.email_roditelja, g.naziv AS NazivGrupe
+                        FROM Dijete d
+                        INNER JOIN Grupa g ON d.grupa_id = g.grupa_id
+                        ORDER BY d.prezime, d.ime";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            djeca.Add(new Dijete
+                            {
+                                DijeteId = reader.GetInt32(0),
+                                Ime = reader.GetString(1),
+                                Prezime = reader.GetString(2),
+                                DatumRodenja = reader.GetDateTime(3),
+                                EmailRoditelja = reader.GetString(4),
+                                NazivGrupe = reader.GetString(5) // Morate dodati NazivGrupe u Dijete model
+                            });
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri dohvatu popisa djece: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return djeca;
+        }
+
     }
 }
