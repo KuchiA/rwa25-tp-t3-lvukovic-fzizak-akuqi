@@ -164,6 +164,7 @@ namespace VrticApp
             // btnPovratak
             // 
             this.btnPovratak.BackColor = System.Drawing.Color.Red;
+            this.btnPovratak.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPovratak.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPovratak.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.btnPovratak.Location = new System.Drawing.Point(656, 12);

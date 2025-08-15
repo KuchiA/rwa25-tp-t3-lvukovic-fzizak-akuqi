@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using VrticApp.Models;
+using System.Diagnostics;
 
 namespace VrticApp
 {
@@ -67,9 +68,16 @@ namespace VrticApp
 
         private void analiza_Click(object sender, EventArgs e)
         {
-            var FrmStatistics = new FrmStatistics(_trenutniKorisnik);
-            Hide();
-            FrmStatistics.ShowDialog();
+            if (_trenutniKorisnik.Uloga == "ravnateljica")
+            {
+                var FrmStatistics = new FrmStatistics(_trenutniKorisnik);
+                Hide();
+                FrmStatistics.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Nije vam dozvoljeno pristupiti analizi podataka. Ova funkcija je rezervirana za ravnateljicu.", "Nedovoljna ovlast", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void sudjelovanje_Click(object sender, EventArgs e)
@@ -82,6 +90,19 @@ namespace VrticApp
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void btnOdjava_Click(object sender, EventArgs e)
+        {
+            DialogResult rezultat = MessageBox.Show("Jeste li sigurni da se želite odjaviti?", "Potvrda odjave", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (rezultat == DialogResult.Yes)
+            {
+                Process.Start(Application.ExecutablePath);
+
+                Application.Exit();
+            }
         }
     }
 }

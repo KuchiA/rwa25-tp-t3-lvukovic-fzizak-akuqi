@@ -38,6 +38,7 @@
             this.analiza = new System.Windows.Forms.Button();
             this.sudjelovanje = new System.Windows.Forms.Button();
             this.lblUloga = new System.Windows.Forms.Label();
+            this.btnOdjava = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -56,6 +57,7 @@
             this.tableLayoutPanel1.Controls.Add(this.analiza, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.sudjelovanje, 1, 8);
             this.tableLayoutPanel1.Controls.Add(this.lblUloga, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnOdjava, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -182,6 +184,22 @@
             this.lblUloga.TabIndex = 9;
             this.lblUloga.Click += new System.EventHandler(this.label2_Click);
             // 
+            // btnOdjava
+            // 
+            this.btnOdjava.BackColor = System.Drawing.Color.Red;
+            this.btnOdjava.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnOdjava.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOdjava.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOdjava.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnOdjava.Location = new System.Drawing.Point(1065, 3);
+            this.btnOdjava.Name = "btnOdjava";
+            this.btnOdjava.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.btnOdjava.Size = new System.Drawing.Size(142, 69);
+            this.btnOdjava.TabIndex = 32;
+            this.btnOdjava.Text = "Odjava";
+            this.btnOdjava.UseVisualStyleBackColor = false;
+            this.btnOdjava.Click += new System.EventHandler(this.btnOdjava_Click);
+            // 
             // Pocetna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,5 +228,6 @@
         private System.Windows.Forms.Button analiza;
         private System.Windows.Forms.Button sudjelovanje;
         private System.Windows.Forms.Label lblUloga;
+        private System.Windows.Forms.Button btnOdjava;
     }
 }
