@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Windows.Forms;
 using VrticApp.Models;
 
@@ -238,7 +239,7 @@ namespace VrticApp.Services
                                 Prezime = reader.GetString(2),
                                 DatumRodenja = reader.GetDateTime(3),
                                 EmailRoditelja = reader.GetString(4),
-                                NazivGrupe = reader.GetString(5) // Morate dodati NazivGrupe u Dijete model
+                                NazivGrupe = reader.GetString(5)
                             });
                         }
                     }
@@ -249,6 +250,53 @@ namespace VrticApp.Services
                 MessageBox.Show($"Greška pri dohvatu popisa djece: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return djeca;
+        }
+
+        public List<Dijete> GetNoShowChildren(int groupId, DateTime date)
+        {
+            List<Dijete> noShowChildren = new List<Dijete>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT d.dijete_id, d.ime, d.prezime, d.datum_rodenja, d.email_roditelja, g.naziv AS NazivGrupe
+                FROM Dijete d
+                INNER JOIN Grupa g ON d.grupa_id = g.grupa_id
+                LEFT JOIN Dolazak dol ON d.dijete_id = dol.dijete_id AND dol.datum = @datum
+                WHERE g.grupa_id = @grupaId AND dol.dolazak_id IS NULL
+                ORDER BY d.prezime, d.ime";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@grupaId", groupId);
+                        cmd.Parameters.AddWithValue("@datum", date.Date);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                noShowChildren.Add(new Dijete
+                                {
+                                    DijeteId = reader.GetInt32(0),
+                                    Ime = reader.GetString(1),
+                                    Prezime = reader.GetString(2),
+                                    DatumRodenja = reader.GetDateTime(3),
+                                    EmailRoditelja = reader.GetString(4),
+                                    NazivGrupe = reader.GetString(5)
+                                });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri dohvatu djece koja su izostala: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return noShowChildren;
         }
 
     }

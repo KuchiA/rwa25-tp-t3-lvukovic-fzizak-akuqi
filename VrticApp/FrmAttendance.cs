@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Windows.Forms;
 using VrticApp.Models;
 using VrticApp.Services;
@@ -312,6 +314,94 @@ namespace VrticApp
                     dgvEvidencija.Columns["vrijeme_dolaska"].HeaderText = "Vrijeme dolaska";
                 if (dgvEvidencija.Columns.Contains("vrijeme_odlaska"))
                     dgvEvidencija.Columns["vrijeme_odlaska"].HeaderText = "Vrijeme odlaska";
+            }
+        }
+
+        private void btnPosaljiEmail_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (comboBoxGrupa.SelectedValue == null || string.IsNullOrEmpty(comboBoxGrupa.SelectedValue.ToString()))
+                {
+                    MessageBox.Show("Odaberite grupu za koju želite provjeriti izostanke.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int groupId = Convert.ToInt32(comboBoxGrupa.SelectedValue);
+                DateTime date = dateTimePickerDatum.Value.Date;
+
+                var noShowChildren = _dolazakService.GetNoShowChildren(groupId, date);
+
+                if (noShowChildren == null || noShowChildren.Count == 0)
+                {
+                    MessageBox.Show("Sva djeca iz odabrane grupe su prisutna ili nema podataka o djeci. Nije potrebno slati e-mailove.", "Informacija", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                DialogResult potvrda = MessageBox.Show(
+                    $"Pronađeno je {noShowChildren.Count} djece koja su izostala. Želite li poslati obavijesti roditeljima?",
+                    "Potvrda slanja e-mailova",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (potvrda == DialogResult.Yes)
+                {
+                    int sentEmails = 0;
+                    foreach (var dijete in noShowChildren)
+                    {
+                        if (!string.IsNullOrEmpty(dijete.EmailRoditelja))
+                        {
+                            // Poziva metodu i provjerava je li slanje uspjelo
+                            bool success = PosaljiEmail(dijete.EmailRoditelja, $"Obavijest o izostanku djeteta {dijete.Ime} {dijete.Prezime}",
+                                $"Poštovani roditelju,\n\n" +
+                                $"Ovime Vas obavještavamo da Vaše dijete {dijete.Ime} {dijete.Prezime} nije evidentirano u vrtiću na datum {date.ToShortDateString()}.\n\n" +
+                                $"Molimo Vas da nas obavijestite o razlogu izostanka.\n\n" +
+                                $"S poštovanjem,\n" +
+                                $"Vaš Vrtić");
+
+                            if (success)
+                            {
+                                sentEmails++;
+                            }
+                        }
+                    }
+                    MessageBox.Show($"Završeno slanje. Uspješno poslano {sentEmails} e-mailova.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri slanju e-mailova: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool PosaljiEmail(string toEmail, string subject, string body)
+        {
+            string smtpServer = "smtp.sendgrid.net";
+            int port = 587;
+            string username = "apikey";
+            string password = "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";
+            string fromEmail = "vukovicluka0101@gmail.com";
+
+            try
+            {
+                using (SmtpClient smtpClient = new SmtpClient(smtpServer, port))
+                {
+                    smtpClient.EnableSsl = true;
+                    smtpClient.UseDefaultCredentials = false;
+                    smtpClient.Credentials = new NetworkCredential(username, password);
+
+                    using (MailMessage mail = new MailMessage(fromEmail, toEmail, subject, body))
+                    {
+                        mail.IsBodyHtml = false;
+                        smtpClient.Send(mail);
+                    }
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Greška pri slanju e-maila na adresu {toEmail}:\n{ex.Message}", "Greška pri slanju", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
             }
         }
     }

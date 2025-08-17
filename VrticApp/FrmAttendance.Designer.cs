@@ -56,6 +56,7 @@ namespace VrticApp
             this.dtpOdlazak = new System.Windows.Forms.DateTimePicker();
             this.dtpDolazak = new System.Windows.Forms.DateTimePicker();
             this.cmbGrupa = new System.Windows.Forms.ComboBox();
+            this.btnPosaljiEmail = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEvidencija)).BeginInit();
             this.SuspendLayout();
             // 
@@ -91,9 +92,9 @@ namespace VrticApp
             this.btnPrikaziEvidenciju.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPrikaziEvidenciju.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrikaziEvidenciju.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(300, 123);
+            this.btnPrikaziEvidenciju.Location = new System.Drawing.Point(218, 123);
             this.btnPrikaziEvidenciju.Name = "btnPrikaziEvidenciju";
-            this.btnPrikaziEvidenciju.Size = new System.Drawing.Size(159, 31);
+            this.btnPrikaziEvidenciju.Size = new System.Drawing.Size(173, 31);
             this.btnPrikaziEvidenciju.TabIndex = 23;
             this.btnPrikaziEvidenciju.Text = "Prikaži evidenciju";
             this.btnPrikaziEvidenciju.UseVisualStyleBackColor = false;
@@ -131,11 +132,11 @@ namespace VrticApp
             this.btnPopis.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnPopis.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPopis.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnPopis.Location = new System.Drawing.Point(476, 123);
+            this.btnPopis.Location = new System.Drawing.Point(397, 123);
             this.btnPopis.Name = "btnPopis";
             this.btnPopis.Size = new System.Drawing.Size(215, 31);
             this.btnPopis.TabIndex = 29;
-            this.btnPopis.Text = "Generiraj popis djece";
+            this.btnPopis.Text = "Generiraj popis sve djece";
             this.btnPopis.UseVisualStyleBackColor = false;
             this.btnPopis.Click += new System.EventHandler(this.btnPopis_Click);
             // 
@@ -144,9 +145,9 @@ namespace VrticApp
             this.btnSpremiEvidenciju.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.btnSpremiEvidenciju.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSpremiEvidenciju.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.btnSpremiEvidenciju.Location = new System.Drawing.Point(115, 123);
+            this.btnSpremiEvidenciju.Location = new System.Drawing.Point(35, 123);
             this.btnSpremiEvidenciju.Name = "btnSpremiEvidenciju";
-            this.btnSpremiEvidenciju.Size = new System.Drawing.Size(159, 31);
+            this.btnSpremiEvidenciju.Size = new System.Drawing.Size(177, 31);
             this.btnSpremiEvidenciju.TabIndex = 27;
             this.btnSpremiEvidenciju.Text = "Spremi evidenciju";
             this.btnSpremiEvidenciju.UseVisualStyleBackColor = false;
@@ -304,11 +305,25 @@ namespace VrticApp
             this.cmbGrupa.Size = new System.Drawing.Size(124, 21);
             this.cmbGrupa.TabIndex = 50;
             // 
+            // btnPosaljiEmail
+            // 
+            this.btnPosaljiEmail.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnPosaljiEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPosaljiEmail.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnPosaljiEmail.Location = new System.Drawing.Point(618, 123);
+            this.btnPosaljiEmail.Name = "btnPosaljiEmail";
+            this.btnPosaljiEmail.Size = new System.Drawing.Size(159, 31);
+            this.btnPosaljiEmail.TabIndex = 64;
+            this.btnPosaljiEmail.Text = "Pošalji mail";
+            this.btnPosaljiEmail.UseVisualStyleBackColor = false;
+            this.btnPosaljiEmail.Click += new System.EventHandler(this.btnPosaljiEmail_Click);
+            // 
             // FrmAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(807, 657);
+            this.Controls.Add(this.btnPosaljiEmail);
             this.Controls.Add(this.btnSpremiNoviDolazak);
             this.Controls.Add(this.txtDijeteId);
             this.Controls.Add(this.txtDolazakId);
@@ -375,5 +390,6 @@ namespace VrticApp
         private DateTimePicker dtpOdlazak;
         private DateTimePicker dtpDolazak;
         private ComboBox cmbGrupa;
+        private Button btnPosaljiEmail;
     }
 }
