@@ -6,6 +6,7 @@ using System.Net.Mail;
 using System.Windows.Forms;
 using VrticApp.Models;
 using VrticApp.Services;
+using System.Configuration;
 
 namespace VrticApp
 {
@@ -379,7 +380,7 @@ namespace VrticApp
             string smtpServer = "smtp.sendgrid.net";
             int port = 587;
             string username = "apikey";
-            string password = "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";
+            string password = ConfigurationManager.AppSettings["SendGridApiKey"];
             string fromEmail = "vukovicluka0101@gmail.com";
 
             try
