@@ -380,7 +380,7 @@ namespace VrticApp
             string smtpServer = "smtp.sendgrid.net";
             int port = 587;
             string username = "apikey";
-            string password = ConfigurationManager.AppSettings["SendGridApiKey"];
+            string password = ConfigurationManager.AppSettings["SendGridApiKey"]; // Ako ne bude radilo na obrani onda trebam novoga napraviti jer je mozda obrisan iz sigurnosnih razloga
             string fromEmail = "vukovicluka0101@gmail.com";
 
             try
