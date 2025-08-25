@@ -84,7 +84,7 @@ namespace VrticApp.Services
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Greška pri dohvatu sljedećeg DolazakId: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return 0; // Vraća 0 ili neku drugu vrijednost u slučaju greške
+                    return 0;
                 }
             }
         }
@@ -205,7 +205,6 @@ namespace VrticApp.Services
                         int rowsAffected = cmd.ExecuteNonQuery();
                         if (rowsAffected == 0)
                         {
-                            // Ako update nije uspio za neki zapis, možeš odmah vratiti false ili nastaviti dalje
                             return false;
                         }
                     }
@@ -297,6 +296,27 @@ namespace VrticApp.Services
                 MessageBox.Show($"Greška pri dohvatu djece koja su izostala: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return noShowChildren;
+        }
+        public void DeleteDolazak(int dolazakId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(_connectionString))
+                {
+                    conn.Open();
+                    string query = "DELETE FROM Dolazak WHERE dolazak_id = @DolazakId";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@DolazakId", dolazakId);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Došlo je do greške prilikom brisanja dolaska iz baze.", ex);
+            }
         }
 
     }

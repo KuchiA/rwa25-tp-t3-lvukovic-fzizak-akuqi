@@ -22,15 +22,14 @@ namespace VrticApp
 
         private void btnPovratak_Click(object sender, EventArgs e)
         {
-            // Pronađi otvorenu instancu Pocetna forme
             Pocetna pocetnaForma = Application.OpenForms.OfType<Pocetna>().FirstOrDefault();
 
             if (pocetnaForma != null)
             {
-                pocetnaForma.Show(); // Prikaži postojeću Pocetna formu
+                pocetnaForma.Show();
             }
 
-            this.Close(); // Zatvori trenutnu formu
+            this.Close();
         }
 
         private void FrmStatistics_Load(object sender, EventArgs e)
@@ -69,8 +68,7 @@ namespace VrticApp
             DataTable dtDolazak = _statistikaService.DohvatiDolazke(grupaId, startDate);
             dgvDetails.DataSource = dtDolazak;
 
-            // Prikaz detalja u dgvDetails
-            dgvDetails.AutoGenerateColumns = true; // Prikaz svih stupaca iz DataTable
+            dgvDetails.AutoGenerateColumns = true;
             dgvDetails.Columns["dolazak_id"].HeaderText = "ID Dolaska";
             dgvDetails.Columns["dijete_id"].HeaderText = "ID Djeteta";
             dgvDetails.Columns["datum"].HeaderText = "Datum";
