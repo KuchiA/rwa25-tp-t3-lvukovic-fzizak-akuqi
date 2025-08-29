@@ -55,7 +55,6 @@ namespace RWA
         {
             try
             {
-                // 1. Validacija
                 if (string.IsNullOrWhiteSpace(imeAktivnosti.Text))
                 {
                     MessageBox.Show("Unesite ime aktivnosti.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -68,29 +67,58 @@ namespace RWA
                     return;
                 }
 
-                // 2. Priprema queryja
+                int aktivnostId;
+
                 using (var con = new SqlConnection(_cs))
                 using (var cmd = new SqlCommand(@"
-                INSERT INTO dbo.Aktivnost (imeAktivnosti, grupa_id, datumAktivnosti, opisAktivnosti)
-                VALUES (@ime, @grupaId, @datum, @opis);", con))
+            INSERT INTO dbo.Aktivnost (imeAktivnosti, grupa_id, datumAktivnosti, opisAktivnosti)
+            OUTPUT INSERTED.IdAktivnost
+            VALUES (@ime, @grupaId, @datum, @opis);", con))
                 {
                     cmd.Parameters.AddWithValue("@ime", imeAktivnosti.Text.Trim());
                     cmd.Parameters.AddWithValue("@grupaId", (int)cmbGrupa.SelectedValue);
                     cmd.Parameters.AddWithValue("@datum", datumAktivnosti.Value.Date);
                     cmd.Parameters.AddWithValue("@opis", OpisTXT.Text.Trim());
 
-                    // 3. Izvrši
                     con.Open();
-                    cmd.ExecuteNonQuery();
+                    aktivnostId = (int)cmd.ExecuteScalar(); // VRATI ID nove aktivnosti
                 }
 
-                MessageBox.Show("Aktivnost uspješno dodana!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // sad upiši oznaèenu djecu u DolazakAktivnost
+                gridDjeca.EndEdit();
+                var svc = new VrticApp.Services.DolazakAktivnostService();
+                int brojac = 0;
 
-                // 4. Po želji resetiraj polja
+                foreach (DataGridViewRow row in gridDjeca.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    bool sudjelovao = row.Cells["Sudjelovao"].Value is bool b && b;
+                    if (!sudjelovao) continue;
+
+                    int dijeteId = Convert.ToInt32(row.Cells["dijete_id"].Value);
+
+                    if (!svc.PostojiSudjelovanje(aktivnostId, dijeteId))
+                    {
+                        svc.Dodaj(new VrticApp.Models.DolazakAktivnost
+                        {
+                            AktivnostId = aktivnostId,
+                            DijeteId = dijeteId,
+                            Sudjelovao = true
+                        });
+                        brojac++;
+                    }
+                }
+
+                MessageBox.Show($"Aktivnost uspješno dodana! Sudjeluje {brojac} djece.",
+                    "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // reset polja
                 imeAktivnosti.Clear();
                 OpisTXT.Clear();
                 cmbGrupa.SelectedIndex = -1;
                 datumAktivnosti.Value = DateTime.Today;
+                gridDjeca.DataSource = null; // isprazni grid
             }
             catch (Exception ex)
             {
@@ -235,6 +263,46 @@ namespace RWA
         private void naslovnaBtn(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OznaciDjecu(object sender, EventArgs e)
+        {
+            if (cmbGrupa.SelectedValue == null || cmbGrupa.SelectedValue is DataRowView)
+                return;
+
+            int grupaId = Convert.ToInt32(cmbGrupa.SelectedValue);
+
+            using (var con = new SqlConnection(_cs))
+            using (var cmd = new SqlCommand(
+                "SELECT dijete_id, ime, prezime " +
+                "FROM Dijete WHERE grupa_id = @grupaId ORDER BY prezime, ime;", con))
+            {
+                cmd.Parameters.AddWithValue("@grupaId", grupaId);
+                con.Open();
+
+                var dt = new DataTable();
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
+
+                // ako grid nema checkbox kolonu – dodaj ju
+                if (!gridDjeca.Columns.Contains("Sudjelovao"))
+                {
+                    var chk = new DataGridViewCheckBoxColumn();
+                    chk.Name = "Sudjelovao";
+                    chk.HeaderText = "Sudjelovao";
+                    gridDjeca.Columns.Insert(0, chk); // stavi na prvo mjesto
+                }
+
+                gridDjeca.DataSource = dt;
+                gridDjeca.Columns["dijete_id"].Visible = false; // sakrij ID
+            }
         }
     }
 }
