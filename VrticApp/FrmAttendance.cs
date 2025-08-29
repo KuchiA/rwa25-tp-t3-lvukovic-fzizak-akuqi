@@ -259,7 +259,7 @@ namespace VrticApp
                 }
                 else
                 {
-                    return; // Ne radimo ništa ako stupac nije predviđen za sortiranje
+                    return; // Ne radi ništa ako stupac nije predviđen za sortiranje
                 }
 
                 dgvEvidencija.DataSource = null;
@@ -352,7 +352,6 @@ namespace VrticApp
                     {
                         if (!string.IsNullOrEmpty(dijete.EmailRoditelja))
                         {
-                            // Poziva metodu i provjerava je li slanje uspjelo
                             bool success = PosaljiEmail(dijete.EmailRoditelja, $"Obavijest o izostanku djeteta {dijete.Ime} {dijete.Prezime}",
                                 $"Poštovani roditelju,\n\n" +
                                 $"Ovime Vas obavještavamo da Vaše dijete {dijete.Ime} {dijete.Prezime} nije evidentirano u vrtiću na datum {date.ToShortDateString()}.\n\n" +
@@ -403,6 +402,59 @@ namespace VrticApp
             {
                 MessageBox.Show($"Greška pri slanju e-maila na adresu {toEmail}:\n{ex.Message}", "Greška pri slanju", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
+            }
+        }
+
+        private void OsvjeziDgvDolazaka()
+        {
+            if (comboBoxGrupa.SelectedValue != null && comboBoxGrupa.SelectedValue.ToString() != "")
+            {
+                int groupId = Convert.ToInt32(comboBoxGrupa.SelectedValue);
+                DateTime date = dateTimePickerDatum.Value.Date;
+
+                _currentDolazakList = _dolazakService.GetDolazak(groupId, date);
+                _currentDjecaList = null;
+
+                dgvEvidencija.DataSource = _currentDolazakList;
+                ApplyDataGridViewSettings("dolazak");
+            }
+            else
+            {
+                dgvEvidencija.DataSource = null;
+            }
+        }
+
+        private void btnObrisi_Click(object sender, EventArgs e)
+        {
+            if (dgvEvidencija.SelectedRows.Count > 0)
+            {
+                DialogResult result = MessageBox.Show(
+                    "Jeste li sigurni da želite obrisati odabrani unos?",
+                    "Potvrda brisanja",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        int dolazakId = Convert.ToInt32(dgvEvidencija.SelectedRows[0].Cells["DolazakId"].Value);
+
+                        _dolazakService.DeleteDolazak(dolazakId);
+
+                        MessageBox.Show("Unos je uspješno obrisan.", "Uspjeh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        OsvjeziDgvDolazaka();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Greška pri brisanju unosa: {ex.Message}", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Molimo odaberite unos za brisanje.", "Upozorenje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
