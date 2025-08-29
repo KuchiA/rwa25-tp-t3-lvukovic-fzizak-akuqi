@@ -43,6 +43,7 @@ namespace VrticApp
             var planerAktivnosti = new planerAktivnosti();
             Hide();
             planerAktivnosti.ShowDialog();
+            Show();
         }
 
         private void dolasci_Click(object sender, EventArgs e)

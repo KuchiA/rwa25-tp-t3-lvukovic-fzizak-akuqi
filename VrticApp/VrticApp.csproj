@@ -82,10 +82,12 @@
     <Compile Include="Klase\Odgajateljica.cs" />
     <Compile Include="Klase\Osoba.cs" />
     <Compile Include="Klase\Ravnatelj.cs" />
+    <Compile Include="Models\Aktivnost.cs" />
     <Compile Include="Models\Dijete.cs" />
     <Compile Include="Models\Dolazak.cs" />
     <Compile Include="Models\Grupa.cs" />
     <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Services\AktivnostService.cs" />
     <Compile Include="Services\DolazakService.cs" />
     <Compile Include="Services\KorisnikService.cs" />
     <Compile Include="Helpers\SecurityHelper.cs" />
@@ -158,6 +160,7 @@
     <EmbeddedResource Include="Upravljanje.resx">
       <DependentUpon>Upravljanje.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
