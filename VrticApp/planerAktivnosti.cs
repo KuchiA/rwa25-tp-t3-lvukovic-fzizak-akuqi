@@ -71,9 +71,9 @@ namespace RWA
 
                 using (var con = new SqlConnection(_cs))
                 using (var cmd = new SqlCommand(@"
-            INSERT INTO dbo.Aktivnost (imeAktivnosti, grupa_id, datumAktivnosti, opisAktivnosti)
-            OUTPUT INSERTED.IdAktivnost
-            VALUES (@ime, @grupaId, @datum, @opis);", con))
+                INSERT INTO dbo.Aktivnost (imeAktivnosti, grupa_id, datumAktivnosti, opisAktivnosti)
+                OUTPUT INSERTED.IdAktivnost
+                VALUES (@ime, @grupaId, @datum, @opis);", con))
                 {
                     cmd.Parameters.AddWithValue("@ime", imeAktivnosti.Text.Trim());
                     cmd.Parameters.AddWithValue("@grupaId", (int)cmbGrupa.SelectedValue);
@@ -265,9 +265,10 @@ namespace RWA
             Close();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Pregled(object sender, EventArgs e)
         {
-
+            var pregled = new sudjelovanjeDjece();
+            pregled.ShowDialog();
         }
 
         private void OznaciDjecu(object sender, EventArgs e)

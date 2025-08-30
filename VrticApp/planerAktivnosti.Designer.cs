@@ -39,7 +39,7 @@ namespace RWA
         {
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Linija = new System.Windows.Forms.TextBox();
             this.rasporedPregled = new System.Windows.Forms.Button();
             this.OpisTXT = new System.Windows.Forms.TextBox();
             this.datumAktivnosti = new System.Windows.Forms.DateTimePicker();
@@ -50,7 +50,7 @@ namespace RWA
             this.labelOpis = new System.Windows.Forms.Label();
             this.cmbGrupa = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.otvoriPregled = new System.Windows.Forms.Button();
             this.naslovnaButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.gridDjeca = new System.Windows.Forms.DataGridView();
@@ -70,29 +70,30 @@ namespace RWA
             this.label1.Text = "Planer Aktivnosti";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // Linija
             // 
-            this.textBox1.BackColor = System.Drawing.Color.DarkCyan;
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(-91, 87);
-            this.textBox1.MaximumSize = new System.Drawing.Size(1714, 70);
-            this.textBox1.MinimumSize = new System.Drawing.Size(1714, 70);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(1714, 13);
-            this.textBox1.TabIndex = 1;
+            this.Linija.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.Linija.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Linija.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Linija.Location = new System.Drawing.Point(-7, 87);
+            this.Linija.MaximumSize = new System.Drawing.Size(873, 10);
+            this.Linija.MinimumSize = new System.Drawing.Size(873, 10);
+            this.Linija.Name = "Linija";
+            this.Linija.Size = new System.Drawing.Size(873, 13);
+            this.Linija.TabIndex = 1;
             // 
             // rasporedPregled
             // 
-            this.rasporedPregled.BackColor = System.Drawing.Color.DarkCyan;
+            this.rasporedPregled.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.rasporedPregled.FlatAppearance.BorderSize = 0;
             this.rasporedPregled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rasporedPregled.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.rasporedPregled.ForeColor = System.Drawing.SystemColors.Control;
-            this.rasporedPregled.Location = new System.Drawing.Point(37, 106);
-            this.rasporedPregled.MaximumSize = new System.Drawing.Size(110, 30);
-            this.rasporedPregled.MinimumSize = new System.Drawing.Size(110, 30);
+            this.rasporedPregled.Location = new System.Drawing.Point(38, 106);
+            this.rasporedPregled.MaximumSize = new System.Drawing.Size(150, 30);
+            this.rasporedPregled.MinimumSize = new System.Drawing.Size(150, 30);
             this.rasporedPregled.Name = "rasporedPregled";
-            this.rasporedPregled.Size = new System.Drawing.Size(110, 30);
+            this.rasporedPregled.Size = new System.Drawing.Size(150, 30);
             this.rasporedPregled.TabIndex = 4;
             this.rasporedPregled.Text = "Raspored";
             this.rasporedPregled.UseVisualStyleBackColor = false;
@@ -100,21 +101,19 @@ namespace RWA
             // 
             // OpisTXT
             // 
-            this.OpisTXT.Location = new System.Drawing.Point(361, 213);
-            this.OpisTXT.MaximumSize = new System.Drawing.Size(300, 150);
-            this.OpisTXT.MinimumSize = new System.Drawing.Size(300, 150);
+            this.OpisTXT.Location = new System.Drawing.Point(469, 215);
             this.OpisTXT.Multiline = true;
             this.OpisTXT.Name = "OpisTXT";
             this.OpisTXT.ShortcutsEnabled = false;
-            this.OpisTXT.Size = new System.Drawing.Size(300, 150);
+            this.OpisTXT.Size = new System.Drawing.Size(350, 150);
             this.OpisTXT.TabIndex = 8;
             // 
             // datumAktivnosti
             // 
             this.datumAktivnosti.CustomFormat = "dd.MM.yyyy";
-            this.datumAktivnosti.Location = new System.Drawing.Point(361, 415);
+            this.datumAktivnosti.Location = new System.Drawing.Point(469, 415);
             this.datumAktivnosti.Name = "datumAktivnosti";
-            this.datumAktivnosti.Size = new System.Drawing.Size(300, 20);
+            this.datumAktivnosti.Size = new System.Drawing.Size(350, 20);
             this.datumAktivnosti.TabIndex = 19;
             // 
             // DodajBTN
@@ -143,7 +142,7 @@ namespace RWA
             // 
             this.imeAktivnosti.Location = new System.Drawing.Point(37, 215);
             this.imeAktivnosti.Name = "imeAktivnosti";
-            this.imeAktivnosti.Size = new System.Drawing.Size(239, 20);
+            this.imeAktivnosti.Size = new System.Drawing.Size(350, 20);
             this.imeAktivnosti.TabIndex = 23;
             // 
             // labelGrupa
@@ -160,7 +159,7 @@ namespace RWA
             // 
             this.labelOpis.AutoSize = true;
             this.labelOpis.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.labelOpis.Location = new System.Drawing.Point(357, 191);
+            this.labelOpis.Location = new System.Drawing.Point(465, 191);
             this.labelOpis.Name = "labelOpis";
             this.labelOpis.Size = new System.Drawing.Size(102, 19);
             this.labelOpis.TabIndex = 25;
@@ -171,7 +170,7 @@ namespace RWA
             this.cmbGrupa.FormattingEnabled = true;
             this.cmbGrupa.Location = new System.Drawing.Point(37, 271);
             this.cmbGrupa.Name = "cmbGrupa";
-            this.cmbGrupa.Size = new System.Drawing.Size(239, 21);
+            this.cmbGrupa.Size = new System.Drawing.Size(350, 21);
             this.cmbGrupa.TabIndex = 26;
             this.cmbGrupa.SelectedIndexChanged += new System.EventHandler(this.OznaciDjecu);
             // 
@@ -179,27 +178,28 @@ namespace RWA
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.label3.Location = new System.Drawing.Point(357, 393);
+            this.label3.Location = new System.Drawing.Point(465, 393);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(116, 19);
             this.label3.TabIndex = 29;
             this.label3.Text = "Datum Aktivnosti";
             // 
-            // button1
+            // otvoriPregled
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkCyan;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.ForeColor = System.Drawing.SystemColors.Control;
-            this.button1.Location = new System.Drawing.Point(166, 106);
-            this.button1.MaximumSize = new System.Drawing.Size(110, 30);
-            this.button1.MinimumSize = new System.Drawing.Size(110, 30);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(110, 30);
-            this.button1.TabIndex = 30;
-            this.button1.Text = "Pregled";
-            this.button1.UseVisualStyleBackColor = false;
+            this.otvoriPregled.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.otvoriPregled.FlatAppearance.BorderSize = 0;
+            this.otvoriPregled.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.otvoriPregled.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.otvoriPregled.ForeColor = System.Drawing.SystemColors.Control;
+            this.otvoriPregled.Location = new System.Drawing.Point(237, 106);
+            this.otvoriPregled.MaximumSize = new System.Drawing.Size(150, 30);
+            this.otvoriPregled.MinimumSize = new System.Drawing.Size(150, 30);
+            this.otvoriPregled.Name = "otvoriPregled";
+            this.otvoriPregled.Size = new System.Drawing.Size(150, 30);
+            this.otvoriPregled.TabIndex = 30;
+            this.otvoriPregled.Text = "Pregled";
+            this.otvoriPregled.UseVisualStyleBackColor = false;
+            this.otvoriPregled.Click += new System.EventHandler(this.Pregled);
             // 
             // naslovnaButton
             // 
@@ -222,14 +222,13 @@ namespace RWA
             this.label2.Size = new System.Drawing.Size(96, 19);
             this.label2.TabIndex = 32;
             this.label2.Text = "Odaberi Djecu";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // gridDjeca
             // 
             this.gridDjeca.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridDjeca.Location = new System.Drawing.Point(37, 326);
             this.gridDjeca.Name = "gridDjeca";
-            this.gridDjeca.Size = new System.Drawing.Size(240, 109);
+            this.gridDjeca.Size = new System.Drawing.Size(350, 109);
             this.gridDjeca.TabIndex = 33;
             // 
             // planerAktivnosti
@@ -241,7 +240,7 @@ namespace RWA
             this.Controls.Add(this.gridDjeca);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.naslovnaButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.otvoriPregled);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.cmbGrupa);
             this.Controls.Add(this.labelOpis);
@@ -252,7 +251,7 @@ namespace RWA
             this.Controls.Add(this.datumAktivnosti);
             this.Controls.Add(this.OpisTXT);
             this.Controls.Add(this.rasporedPregled);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Linija);
             this.Controls.Add(this.label1);
             this.Name = "planerAktivnosti";
             this.Text = "Planer Aktivnosti";
@@ -267,7 +266,7 @@ namespace RWA
 
         private Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private TextBox textBox1;
+        private TextBox Linija;
         private Button rasporedPregled;
         private TextBox OpisTXT;
         private DateTimePicker datumAktivnosti;
@@ -278,7 +277,7 @@ namespace RWA
         private Label labelOpis;
         private ComboBox cmbGrupa;
         private Label label3;
-        private Button button1;
+        private Button otvoriPregled;
         private Button naslovnaButton;
         private Label label2;
         private DataGridView gridDjeca;

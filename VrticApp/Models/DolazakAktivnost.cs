@@ -16,7 +16,7 @@ namespace VrticApp.Models
         // Sudjelovao = true ako je bio prisutan (default), false ako nije
         public bool Sudjelovao { get; set; } = true;
 
-        // Navigacijske reference (opcionalno, za lakši prikaz/povezivanje)
+        // Za prikazivanje
         public Aktivnost Aktivnost { get; set; }
         public Dijete Dijete { get; set; }
     }

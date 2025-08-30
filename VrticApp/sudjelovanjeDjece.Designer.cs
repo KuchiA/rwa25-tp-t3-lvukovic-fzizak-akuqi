@@ -34,133 +34,132 @@ namespace RWA
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            textBox1 = new TextBox();
-            label2 = new Label();
-            dataGridView1 = new DataGridView();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
-            textBox4 = new TextBox();
-            textBox5 = new TextBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
-            SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.gridSudjelovanje = new System.Windows.Forms.DataGridView();
+            this.Linija = new System.Windows.Forms.TextBox();
+            this.btnNovo = new System.Windows.Forms.Button();
+            this.btnStaro = new System.Windows.Forms.Button();
+            this.btnGrupa = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.gridSudjelovanje)).BeginInit();
+            this.SuspendLayout();
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Calibri", 18F, FontStyle.Bold, GraphicsUnit.Point, 238);
-            label1.Location = new Point(43, 31);
-            label1.MaximumSize = new Size(100, 40);
-            label1.MinimumSize = new Size(200, 40);
-            label1.Name = "label1";
-            label1.Size = new Size(200, 40);
-            label1.TabIndex = 0;
-            label1.Text = "Pregled Aktivnosti";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Click += label1_Click;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(12, 27);
+            this.label1.MaximumSize = new System.Drawing.Size(350, 35);
+            this.label1.MinimumSize = new System.Drawing.Size(350, 35);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(350, 35);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Sudjelovanje u Aktivnostima";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // gridSudjelovanje
             // 
-            textBox1.BackColor = Color.DarkCyan;
-            textBox1.BorderStyle = BorderStyle.None;
-            textBox1.Location = new Point(-106, 100);
-            textBox1.MaximumSize = new Size(2000, 70);
-            textBox1.MinimumSize = new Size(2000, 70);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(2000, 70);
-            textBox1.TabIndex = 1;
+            this.gridSudjelovanje.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gridSudjelovanje.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.gridSudjelovanje.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.gridSudjelovanje.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridSudjelovanje.Location = new System.Drawing.Point(37, 202);
+            this.gridSudjelovanje.Name = "gridSudjelovanje";
+            this.gridSudjelovanje.Size = new System.Drawing.Size(740, 352);
+            this.gridSudjelovanje.TabIndex = 3;
             // 
-            // label2
+            // Linija
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 13F);
-            label2.Location = new Point(782, 31);
-            label2.MaximumSize = new Size(200, 40);
-            label2.MinimumSize = new Size(200, 40);
-            label2.Name = "label2";
-            label2.Size = new Size(200, 40);
-            label2.TabIndex = 2;
-            label2.Text = "Ardijan Kuqi";
-            label2.TextAlign = ContentAlignment.MiddleCenter;
-            label2.Click += label2_Click;
+            this.Linija.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Linija.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.Linija.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Linija.Location = new System.Drawing.Point(-11, 84);
+            this.Linija.MaximumSize = new System.Drawing.Size(0, 10);
+            this.Linija.MinimumSize = new System.Drawing.Size(839, 10);
+            this.Linija.Name = "Linija";
+            this.Linija.Size = new System.Drawing.Size(839, 10);
+            this.Linija.TabIndex = 8;
             // 
-            // dataGridView1
+            // btnNovo
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(43, 233);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(874, 334);
-            dataGridView1.TabIndex = 3;
+            this.btnNovo.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnNovo.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnNovo.FlatAppearance.BorderSize = 0;
+            this.btnNovo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNovo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
+            this.btnNovo.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnNovo.Location = new System.Drawing.Point(37, 160);
+            this.btnNovo.Name = "btnNovo";
+            this.btnNovo.Size = new System.Drawing.Size(152, 34);
+            this.btnNovo.TabIndex = 9;
+            this.btnNovo.Text = "Sortiraj: Novije";
+            this.btnNovo.UseVisualStyleBackColor = false;
+            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
             // 
-            // textBox2
+            // btnStaro
             // 
-            textBox2.Location = new Point(43, 204);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(156, 23);
-            textBox2.TabIndex = 4;
-            textBox2.Text = "Aktivnosti";
-            textBox2.TextAlign = HorizontalAlignment.Center;
+            this.btnStaro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnStaro.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnStaro.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnStaro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnStaro.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
+            this.btnStaro.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnStaro.Location = new System.Drawing.Point(625, 160);
+            this.btnStaro.Name = "btnStaro";
+            this.btnStaro.Size = new System.Drawing.Size(152, 34);
+            this.btnStaro.TabIndex = 10;
+            this.btnStaro.Text = "Sortiraj: Starije";
+            this.btnStaro.UseVisualStyleBackColor = false;
+            this.btnStaro.Click += new System.EventHandler(this.btnStaro_Click);
             // 
-            // textBox3
+            // btnGrupa
             // 
-            textBox3.Location = new Point(281, 204);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(156, 23);
-            textBox3.TabIndex = 5;
-            textBox3.Text = "Broj Djece";
-            textBox3.TextAlign = HorizontalAlignment.Center;
+            this.btnGrupa.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnGrupa.FlatAppearance.BorderColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnGrupa.FlatAppearance.BorderSize = 0;
+            this.btnGrupa.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnGrupa.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F);
+            this.btnGrupa.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.btnGrupa.Location = new System.Drawing.Point(326, 160);
+            this.btnGrupa.Name = "btnGrupa";
+            this.btnGrupa.Size = new System.Drawing.Size(152, 34);
+            this.btnGrupa.TabIndex = 11;
+            this.btnGrupa.Text = "Sortiraj: Mlađi - Starije";
+            this.btnGrupa.UseVisualStyleBackColor = false;
+            this.btnGrupa.Click += new System.EventHandler(this.btnGrupa_Click);
             // 
-            // textBox4
+            // sudjelovanjeDjece
             // 
-            textBox4.Location = new Point(522, 204);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(156, 23);
-            textBox4.TabIndex = 6;
-            textBox4.Text = "Broj Dječaka";
-            textBox4.TextAlign = HorizontalAlignment.Center;
-            // 
-            // textBox5
-            // 
-            textBox5.Location = new Point(761, 204);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(156, 23);
-            textBox5.TabIndex = 7;
-            textBox5.Text = "Broj Cura";
-            textBox5.TextAlign = HorizontalAlignment.Center;
-            // 
-            // Form1
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(224, 224, 224);
-            ClientSize = new Size(967, 614);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(dataGridView1);
-            Controls.Add(label2);
-            Controls.Add(textBox1);
-            Controls.Add(label1);
-            Name = "Form1";
-            Text = " ";
-            Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.ClientSize = new System.Drawing.Size(823, 599);
+            this.Controls.Add(this.btnGrupa);
+            this.Controls.Add(this.btnStaro);
+            this.Controls.Add(this.btnNovo);
+            this.Controls.Add(this.Linija);
+            this.Controls.Add(this.gridSudjelovanje);
+            this.Controls.Add(this.label1);
+            this.MinimumSize = new System.Drawing.Size(839, 445);
+            this.Name = "sudjelovanjeDjece";
+            this.Text = "Sudjelovanje u Aktivnostima";
+            ((System.ComponentModel.ISupportInitialize)(this.gridSudjelovanje)).EndInit();
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
         private Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
-        private TextBox textBox1;
-        private Label label2;
-        private DataGridView dataGridView1;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
+        private DataGridView gridSudjelovanje;
+        private TextBox Linija;
+        private Button btnNovo;
+        private Button btnStaro;
+        private Button btnGrupa;
     }
 }
